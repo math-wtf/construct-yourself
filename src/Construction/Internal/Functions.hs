@@ -8,6 +8,7 @@
 module Construction.Internal.Functions
   ( Context (..)        -- make restrictions is good practice. As you can see here,
   , fresh, free, bound  -- we make "public" not all functions, but only Context, fresh, ...
+  , reduce, substitute, alpha, beta, eta
   )where
 
 import           Construction.Internal.Types (Name, Term (..))
@@ -56,3 +57,10 @@ beta = undefined
 -- | eta reduction
 eta :: Term -> Term
 eta = undefined
+
+-- | reduce term
+reduce :: Term -> Term
+reduce term = let term' = beta term
+              in if term' == term
+                 then eta term
+                 else reduce term'
