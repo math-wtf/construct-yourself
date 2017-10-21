@@ -16,4 +16,3 @@ testFresh = do
     let conflicts = fromList ["a", "x", "x1"]
     it "should generate fresh names" $ 
         toList conflicts `shouldNotContain` [fresh conflicts]
-    
